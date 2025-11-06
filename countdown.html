@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wedding Countdown — 7 March 2026 7:00 PM</title>
+  <style>
+    :root {
+      --bg1: #fff0f6;
+      --bg2: #fff8f0;
+      --accent1: #ff7aa2;
+      --accent2: #ffb3c9;
+      --muted: #6b6b6b;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Arial";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(130deg, var(--bg1), var(--bg2));
+      overflow: hidden;
+      color: #222;
+    }
+
+    .card {
+      width: min(920px, 95vw);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5));
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: visible;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    /* left: title + message */
+    .left {
+      flex: 1 1 320px;
+      min-width: 220px;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(20px, 3.6vw, 34px);
+      letter-spacing: 1px;
+      color: #9d2a5c;
+      font-weight: 700;
+    }
+
+    p.lead {
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: clamp(12px, 1.6vw, 16px);
+    }
+
+    .names {
+      font-family: "Georgia", "Times New Roman", serif;
+      font-style: italic;
+      color: #6b263f;
+      font-size: clamp(16px, 2.2vw, 20px);
+      margin-bottom: 18px;
+    }
+
+    /* countdown numbers */
+    .countdown {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .unit {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      border-radius: 12px;
+      padding: 14px 16px;
+      min-width: 86px;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(157, 42, 92, 0.08);
+      transform-origin: center;
+      transition: transform .25s ease;
+    }
+
+    .unit.changed {
+      animation: pop .45s cubic-bezier(.2, .9, .3, 1);
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1)
+      }
+
+      35% {
+        transform: scale(1.12) rotate(-1deg)
+      }
+
+      70% {
+        transform: scale(0.98) rotate(1deg)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .value {
+      font-weight: 700;
+      font-size: clamp(20px, 3.6vw, 34px);
+      color: #82304d;
+      letter-spacing: 0.6px;
+    }
+
+    .label {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      color: #9a687b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* right: decorative panel with hearts */
+    .right {
+      width: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .heart-wrap {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 122, 162, 0.14), transparent 20%),
+        radial-gradient(circle at 70% 80%, rgba(255, 179, 201, 0.12), transparent 22%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(157, 42, 92, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    .large-heart {
+      font-size: 70px;
+      transform-origin: center;
+      animation: heartbeat 1.6s ease-in-out infinite;
+      filter: drop-shadow(0 6px 12px rgba(157, 42, 92, 0.12));
+      color: var(--accent1);
+      opacity: 0.95;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1) rotate(-8deg)
+      }
+
+      14% {
+        transform: scale(1.12) rotate(-4deg)
+      }
+
+      28% {
+        transform: scale(1) rotate(0deg)
+      }
+
+      42% {
+        transform: scale(1.08) rotate(3deg)
+      }
+
+      100% {
+        transform: scale(1) rotate(-8deg)
+      }
+    }
+
+    /* floating hearts around */
+    .floating-heart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      font-size: 14px;
+      opacity: 0.85;
+      animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(40px) scale(.9);
+        opacity: 0
+      }
+
+      10% {
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(-200px) scale(1.05);
+        opacity: 0
+      }
+    }
+
+    /* celebration state */
+    .celebrate {
+      text-align: center;
+      width: 100%;
+      padding: 18px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, rgba(255, 190, 220, 0.12), rgba(255, 233, 240, 0.10));
+      color: #7a2140;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* responsive */
+    @media (max-width:680px) {
+      .card {
+        flex-direction: column;
+        padding: 20px
+      }
+
+      .right {
+        width: 100%
+      }
+
+      .heart-wrap {
+        width: 150px;
+        height: 150px
+      }
+
+      .unit {
+        min-width: 72px;
+        padding: 10px
+      }
+    }
+
+    /* tiny footer */
+    .when {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #a04b6d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card" role="region" aria-label="Wedding countdown">
+    <div class="left">
+      <h1>We're tying the knot</h1>
+      <div class="names">Aaron ♥ Partner</div>
+      <p class="lead">Join us in counting down to our wedding — a night of love, laughter and forever.</p>
+
+      <div id="countdown" class="countdown" aria-live="polite">
+        <div class="unit" data-unit="days">
+          <div class="value" id="days">--</div>
+          <span class="label">Days</span>
+        </div>
+        <div class="unit" data-unit="hours">
+          <div class="value" id="hours">--</div>
+          <span class="label">Hours</span>
+        </div>
+        <div class="unit" data-unit="minutes">
+          <div class="value" id="minutes">--</div>
+          <span class="label">Minutes</span>
+        </div>
+        <div class="unit" data-unit="seconds">
+          <div class="value" id="seconds">--</div>
+          <span class="label">Seconds</span>
+        </div>
+      </div>
+
+      <div id="celebrate" class="celebrate" style="display:none">
+        🎉 The day is here — we're married! 🎉
+      </div>
+
+      <div class="when">March 7, 2026 · 7:00 PM (UTC+08:00)</div>
+    </div>
+
+    <div class="right" aria-hidden="true">
+      <div class="heart-wrap" id="heartWrap">
+        <div class="large-heart">❤</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Target date/time (Malaysia time = UTC+08:00)
+      const target = new Date('2026-03-07T19:00:00+08:00');
+
+      // DOM refs
+      const elDays = document.getElementById('days');
+      const elHours = document.getElementById('hours');
+      const elMinutes = document.getElementById('minutes');
+      const elSeconds = document.getElementById('seconds');
+      const celebrateEl = document.getElementById('celebrate');
+      const unitEls = {
+        days: document.querySelector('.unit[data-unit="days"]'),
+        hours: document.querySelector('.unit[data-unit="hours"]'),
+        minutes: document.querySelector('.unit[data-unit="minutes"]'),
+        seconds: document.querySelector('.unit[data-unit="seconds"]'),
+      };
+
+      // keep previous values so we can animate when they change
+      let prev = { d: null, h: null, m: null, s: null };
+      let timer = null;
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function getRemaining(ms) {
+        if (ms <= 0) return { d: 0, h: 0, m: 0, s: 0, done: true };
+        let s = Math.floor(ms / 1000);
+        const d = Math.floor(s / 86400); s -= d * 86400;
+        const h = Math.floor(s / 3600); s -= h * 3600;
+        const m = Math.floor(s / 60);
+        const sec = s - m * 60;
+        return { d, h, m, s: sec, done: false };
+      }
+
+      function update() {
+        const now = new Date();
+        const rem = target - now;
+        const r = getRemaining(rem);
+        if (r.done) {
+          // reached zero
+          document.getElementById('countdown').style.display = 'none';
+          celebrateEl.style.display = 'block';
+          spawnBurst(18);
+          clearInterval(timer);
+          return;
+        }
+        // update values + animate changed units
+        if (prev.d !== r.d) {
+          elDays.textContent = r.d;
+          flashUnit('days');
+          prev.d = r.d;
+        }
+        if (prev.h !== r.h) {
+          elHours.textContent = pad(r.h);
+          flashUnit('hours');
+          prev.h = r.h;
+        }
+        if (prev.m !== r.m) {
+          elMinutes.textContent = pad(r.m);
+          flashUnit('minutes');
+          prev.m = r.m;
+        }
+        if (prev.s !== r.s) {
+          elSeconds.textContent = pad(r.s);
+          flashUnit('seconds');
+          spawnFloatingHeart(); // small heart each second tick
+          prev.s = r.s;
+        }
+      }
+
+      function flashUnit(name) {
+        const el = unitEls[name];
+        if (!el) return;
+        el.classList.remove('changed');
+        // force reflow to restart animation
+        void el.offsetWidth;
+        el.classList.add('changed');
+        setTimeout(() => el.classList.remove('changed'), 700);
+      }
+
+      // floating hearts generator (small)
+      const heartWrap = document.getElementById('heartWrap');
+      function spawnFloatingHeart() {
+        const h = document.createElement('div');
+        h.className = 'floating-heart';
+        h.textContent = '❤';
+        const size = Math.random() * 12 + 10;
+        h.style.fontSize = size + 'px';
+        const left = Math.random() * 80 + 10;
+        h.style.left = left + '%';
+        const duration = Math.random() * 2 + 2.2;
+        h.style.animationDuration = duration + 's';
+        heartWrap.appendChild(h);
+        setTimeout(() => {
+          h.remove();
+        }, (duration * 1000) + 200);
+      }
+
+      // celebration burst hearts
+      function spawnBurst(count) {
+        for (let i = 0; i < count; i++) {
+          setTimeout(() => {
+            const b = document.createElement('div');
+            b.className = 'floating-heart';
+            b.textContent = '❤';
+            const size = Math.random() * 18 + 14;
+            b.style.fontSize = size + 'px';
+            b.style.left = (40 + (Math.random() * 30 - 15)) + '%';
+            const dur = Math.random() * 1.2 + 1.6;
+            b.style.animationDuration = dur + 's';
+            b.style.transform = `translateY(0) rotate(${Math.random() * 60 - 30}deg)`;
+            heartWrap.appendChild(b);
+            setTimeout(() => b.remove(), (dur * 1000) + 200);
+          }, i * 60);
+        }
+      }
+
+      // initial update & start interval
+      update();
+      timer = setInterval(update, 1000);
+
+      // Accessibility: announce target as a readable time
+      const region = document.querySelector('[role="region"]');
+      region.setAttribute('aria-label', 'Wedding countdown to March 7, 2026 at seven PM Malaysia time');
+
+      // Nice tiny flourish every 10 seconds: gentle background pulse
+      setInterval(() => {
+        heartWrap.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.02)' }, { transform: 'scale(1)' }], { duration: 1200 });
+      }, 10000);
+
+    })();
+  </script>
+</body>
+
+</html>
