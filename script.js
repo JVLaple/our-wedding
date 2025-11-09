@@ -139,4 +139,22 @@ document.addEventListener("DOMContentLoaded", function () {
       { duration: 1200 }
     );
   }, 10000);
+
+  let hasPlayed = false;
+
+  window.addEventListener("scroll", () => {
+    const bgMusic = document.getElementById("bgMusic");
+
+    if (!hasPlayed) {
+      bgMusic
+        .play()
+        .then(() => {
+          console.log("Music started!");
+          hasPlayed = true;
+        })
+        .catch((err) => {
+          console.log("Autoplay blocked:", err);
+        });
+    }
+  });
 });

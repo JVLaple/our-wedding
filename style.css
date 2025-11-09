@@ -33,6 +33,27 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "HanyiSentyLotusRegular";
+  src: url("Fonts/HanyiSentyLotusRegular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HuXiaoBao-SaoBao";
+  src: url("Fonts/HuXiaoBao-SaoBao Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Slidechunfeng";
+  src: url("Fonts/Slidechunfeng Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @keyframes pop {
   0% {
     transform: scale(1);
@@ -148,9 +169,11 @@ body {
     justify-content: center;
     overflow: hidden;
     position: relative;
-    &:first-of-type {
+    &:first-of-type,
+    &:last-of-type {
       margin: 0 -30px;
-
+    }
+    &:first-of-type {
       &::before {
         content: "";
         position: absolute;
@@ -180,6 +203,24 @@ body {
       }
     }
 
+    &:last-of-type {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5rem;
+        background: linear-gradient(
+          to bottom,
+          var(--card) 20%,
+          transparent 100%
+        );
+        filter: blur(0px);
+        z-index: 1;
+      }
+    }
+
     img {
       width: 100%;
       height: 100%;
@@ -188,20 +229,30 @@ body {
 
     .image-overlay {
       position: absolute;
-      top: min(10vw, 5rem);
+      top: min(5cqi, 2.5rem);
       font-family: "RusticRoadway";
       color: var(--word);
       z-index: 2;
 
+      img {
+        width: min(15cqi, 7rem);
+        height: min(15cqi, 7rem);
+      }
+
       .image-date,
       .image-english {
-        font-style: italic;
-        font-size: min(10vw, 2.5rem);
+        font-size: min(8vw, 2.5rem);
       }
 
       .image-chinese {
-        font-size: min(15vw, 4rem);
+        font-family: "Slidechunfeng";
+        font-size: min(15vw, 5rem);
         color: var(--word);
+        letter-spacing: -20px;
+
+        @media (max-width: 375px) {
+          letter-spacing: -10px;
+        }
       }
     }
 
@@ -238,40 +289,40 @@ body {
   .invitation {
     font-family: "Hanyi";
     font-size: min(10vw, 3rem);
+
+    .invitation-chinese {
+      font-family: "HanyiSentyLotusRegular";
+    }
   }
 
   .date {
     color: var(--word);
     font-family: "Times New Roman";
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     width: 100%;
     display: flex;
     justify-content: center;
 
     .date-side {
       padding: 10px 0;
-      border-top: 4px solid var(--word-light);
-      border-bottom: 4px solid var(--word-light);
+      border-top: 3px solid var(--word-light);
+      border-bottom: 3px solid var(--word-light);
       align-self: center;
       flex: 1;
     }
 
     .date-middle {
       padding: 0 5px;
+      font-size: 1.75rem;
       .date-date {
-        font-size: 4.5rem;
+        font-size: 5.5rem;
         font-family: "LoveLight";
+        line-height: 5.5rem;
       }
     }
 
     @media (max-width: 424px) {
       font-size: 5cqi;
-
-      .date-middle {
-        .date-date {
-          font-size: 4rem;
-        }
-      }
     }
   }
 
@@ -322,11 +373,26 @@ body {
     }
   }
 
-  .location{
-    .location-map{
-      img{
-        width: 100%;
-        height: auto;
+  .location-map {
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .location-detail {
+      .location-name {
+        font-size: min(5cqi, 1.75rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .location-time {
+        font-size: min(3cqi, 1rem);
+
+        .sharp {
+          background-color: var(--word);
+          color: var(--bg);
+          padding: 5px;
+        }
       }
     }
   }
@@ -344,6 +410,8 @@ body {
       min-width: 80px;
       transform-origin: center;
       transition: transform 0.25s ease;
+      background-color: #f5f5f5;
+      padding: 10px 5px;
 
       .value {
         font-weight: 700;
@@ -366,13 +434,12 @@ body {
   }
 
   .see-you-text-english {
-    font-family: 'RusticRoadway';
+    font-family: "RusticRoadway";
     font-size: 2.5rem;
   }
 
-
   .see-you-text-chinese {
-    font-family: 'Hanyi';
+    font-family: "HanyiSentyLotusRegular";
     font-size: 2.5rem;
   }
 
@@ -426,6 +493,10 @@ body {
     font-family: "RusticRoadway";
     color: #3f3f3f;
     font-size: min(15vw, 2rem);
+
+    .celebrate-chinese {
+      font-family: "HanyiSentyLotusRegular";
+    }
   }
 }
 
