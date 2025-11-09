@@ -12,6 +12,27 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Lucy";
+  src: url("Fonts/LucySaidOkPersonalUse.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "WastedVindey";
+  src: url("Fonts/Wasted-Vindey.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LoveLight";
+  src: url("Fonts/LoveLight-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @keyframes pop {
   0% {
     transform: scale(1);
@@ -73,6 +94,9 @@
   --card: #ffffff;
   --accent: #b98f6b;
   --muted: #7a6d62;
+  --heart-red: #f71010;
+  --word: #3f3f3f;
+  --word-light: #5d5d5d;
   --shadow: 0 10px 30px rgba(36, 36, 36, 0.08);
   --radius: 18px;
 }
@@ -112,7 +136,7 @@ body {
   grid-template-columns: 1fr;
   min-height: auto;
   padding: 0 30px;
-  gap: 1rem;
+  gap: 3rem;
   text-align: center;
 
   .photo {
@@ -166,7 +190,7 @@ body {
       position: absolute;
       top: min(10vw, 5rem);
       font-family: "RusticRoadway";
-      color: #3f3f3f;
+      color: var(--word);
       z-index: 2;
 
       .image-date,
@@ -177,7 +201,7 @@ body {
 
       .image-chinese {
         font-size: min(15vw, 4rem);
-        color: #3f3f3f;
+        color: var(--word);
       }
     }
 
@@ -185,20 +209,27 @@ body {
       position: absolute;
       bottom: 10px;
       font-family: "RusticRoadway";
-      color: #3f3f3f;
+      color: var(--word);
       z-index: 2;
       display: flex;
-      font-size: min(15vw, 1.2rem);
+      font-size: 1.2rem;
 
       .separator {
         margin: auto;
         padding: 0 30px;
       }
+
+      @media (max-width: 424px) {
+        font-size: 4.5cqi;
+        .separator {
+          margin: auto;
+          padding: 0 6cqi;
+        }
+      }
     }
   }
 
   .heart-separator {
-    margin: 2rem 0;
     svg {
       width: 100%;
     }
@@ -209,6 +240,97 @@ body {
     font-size: min(10vw, 3rem);
   }
 
+  .date {
+    color: var(--word);
+    font-family: "Times New Roman";
+    font-size: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .date-side {
+      padding: 10px 0;
+      border-top: 4px solid var(--word-light);
+      border-bottom: 4px solid var(--word-light);
+      align-self: center;
+      flex: 1;
+    }
+
+    .date-middle {
+      padding: 0 5px;
+      .date-date {
+        font-size: 4.5rem;
+        font-family: "LoveLight";
+      }
+    }
+
+    @media (max-width: 424px) {
+      font-size: 5cqi;
+
+      .date-middle {
+        .date-date {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+
+  .calendar {
+    display: flex;
+    justify-content: center;
+
+    .calendar-table {
+      border-spacing: 0;
+      th {
+        background-color: var(--word-light);
+        color: var(--bg);
+      }
+      th,
+      td {
+        width: 50px;
+        height: 50px;
+        position: relative;
+
+        .wedding-heart {
+          position: absolute;
+          top: -2px;
+          left: 0;
+          transform-origin: center;
+          animation: heartbeat 1.6s ease-in-out infinite;
+
+          svg {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+
+      @media (max-width: 424px) {
+        th,
+        td {
+          width: 12cqi;
+          height: 12cqi;
+
+          .wedding-heart {
+            svg {
+              width: 12cqi;
+              height: 12cqi;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .location{
+    .location-map{
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
   .countdown {
     font-family: "RusticRoadway";
     display: flex;
@@ -216,7 +338,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    color: #3f3f3f;
+    color: var(--word);
 
     .unit {
       min-width: 80px;
@@ -225,14 +347,14 @@ body {
 
       .value {
         font-weight: 700;
-    		font-size: min(7vw, .8rem);
+        font-size: min(7vw, 0.8rem);
         letter-spacing: 0.6px;
       }
 
       .label {
         display: block;
         margin-top: 6px;
-    		font-size: min(5vw, .6rem);
+        font-size: min(5vw, 0.6rem);
         text-transform: uppercase;
         letter-spacing: 1px;
       }
@@ -243,12 +365,23 @@ body {
     }
   }
 
+  .see-you-text-english {
+    font-family: 'RusticRoadway';
+    font-size: 2.5rem;
+  }
+
+
+  .see-you-text-chinese {
+    font-family: 'Hanyi';
+    font-size: 2.5rem;
+  }
+
   .heart-spawn {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    color: #f71010;
+    color: var(--heart-red);
     z-index: 3;
 
     .heart-wrap {

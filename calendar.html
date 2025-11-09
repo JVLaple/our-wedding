@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>March 2026 Calendar</title>
+<style>
+    body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #ffe6eb, #fff5f7);
+        color: #444;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        color: #c2185b;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        max-width: 600px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    th {
+        background-color: #f8bbd0;
+        color: #880e4f;
+        padding: 15px;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    td {
+        position: relative;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+    }
+
+    td:hover {
+        background-color: #fce4ec;
+        cursor: pointer;
+    }
+
+    .empty {
+        background-color: #fff5f7;
+    }
+
+    .wedding-day {
+        font-weight: bold;
+        color: #c2185b;
+        font-size: 1.3em;
+        z-index: 10;
+    }
+
+    .wedding-heart {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        font-size: 3em;
+        color: transparent;
+        border: 2px solid #f06292;
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    td:hover .wedding-heart {
+        transform: scale(1.2);
+    }
+
+    caption {
+        caption-side: top;
+        margin-bottom: 10px;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #ad1457;
+    }
+</style>
+</head>
+<body>
+    <h1>💖 March 2026 💖</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td class="wedding-day">
+                    7
+                    <span class="wedding-heart"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td>30</td>
+                <td>31</td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

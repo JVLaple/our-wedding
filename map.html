@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map Example</title>
+    <style>
+        /* Set the size of the map container */
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        /* Set the page size */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- This is where the map will be displayed -->
+    <div id="map"></div>
+
+    <script>
+        // Initialize the map
+        function initMap() {
+            // Create a map centered on a specific location (e.g., coordinates of New York)
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 40.730610, lng: -73.935242 }, // New York City
+                zoom: 12, // Zoom level
+            });
+
+            // Optionally, add a marker
+            const marker = new google.maps.Marker({
+                position: { lat: 40.730610, lng: -73.935242 },
+                map: map,
+                title: "New York City"
+            });
+        }
+    </script>
+
+    <!-- Load Google Maps API with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly" 
+            async 
+            defer></script>
+</body>
+</html>

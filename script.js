@@ -41,7 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const r = getRemaining(rem);
     if (r.done) {
       // reached zero
-      document.getElementById("countdown").style.display = "none";
+      // document.getElementById("countdown").style.display = "none";
+      var textList = document.getElementsByClassName("hide");
+      for (var i = 0; i < textList.length; i++) {
+        textList[i].style.display = "none"; // This hides the element
+      }
       celebrateEl.style.display = "block";
       spawnBurst(18);
       clearInterval(timer);
