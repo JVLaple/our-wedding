@@ -158,3 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+function goToLink() {
+  window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdxglHKv1_CgNr5nLLmwz0n7F8CgjbTyfVwIQ0p2oRkS9ctnQ/viewform?usp=header";
+}
