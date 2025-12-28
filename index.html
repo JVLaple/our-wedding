@@ -10,12 +10,26 @@
       rel="stylesheet"
     />
     <link href="style.css" rel="stylesheet" />
+    <link href="envelope.css" rel="stylesheet" />
     <script src="script.js"></script>
   </head>
 
-  <body>
-    <audio id="bgMusic" src="Music/music.mp3" loop></audio>
-    <div class="invite-wrap" role="main">
+  <body class="initial-body">
+    <audio id="bgMusic" src="Music/music_3.mp3" loop></audio>
+    <div id="envelope-wrapper" onclick="openEnvelope()">
+      <div class="heart">
+        <div class="click-to-open-div">
+          Click to open!
+        </div>
+      </div>
+      <div id="envelope">    
+        <div class="top"></div>
+        <div class="sides"></div>
+      </div>
+    </div>
+
+    <div class="invite-wrap hidden" id="invite-wrap" role="main">
+      <span class="play-button" onclick="playOrPause();"><img id="playing-icon" src="Images/audio-playing.gif"/></span>
       <div class="photo" id="photo">
         <img src="Images/KEN01933.jpg" alt="Couple photo" />
         <div class="image-overlay">

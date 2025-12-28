@@ -1,3 +1,5 @@
+let hasPlayed = false;
+
 document.addEventListener("DOMContentLoaded", function () {
   // Target date/time (Malaysia time = UTC+08:00)
   const target = new Date("2026-03-07T19:00:00+08:00");
@@ -139,26 +141,44 @@ document.addEventListener("DOMContentLoaded", function () {
       { duration: 1200 }
     );
   }, 10000);
+});
 
-  let hasPlayed = false;
+function goToLink() {
+  window.location.href =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdxglHKv1_CgNr5nLLmwz0n7F8CgjbTyfVwIQ0p2oRkS9ctnQ/viewform?usp=header";
+}
 
-  window.addEventListener("scroll", () => {
-    const bgMusic = document.getElementById("bgMusic");
+function openEnvelope() {
+  var wrapper = document.getElementById("invite-wrap");
+  wrapper.classList.remove("hidden");
+  var envelope = document.getElementById("envelope-wrapper");
+  envelope.classList.add("hidden");
+  document.body.classList.remove("initial-body");
+  document.body.classList.add("with-background");
 
-    if (!hasPlayed) {
+  playOrPause();
+}
+
+function playOrPause(){
+  const bgMusic = document.getElementById("bgMusic");
+  const icon = document.getElementById("playing-icon");
+  if (bgMusic) {
+    if(hasPlayed){
+      bgMusic.pause();
+      hasPlayed = false;
+      icon.src = "Images/audio-paused.png";
+    }
+    else{
       bgMusic
         .play()
         .then(() => {
           console.log("Music started!");
           hasPlayed = true;
+          icon.src = "Images/audio-playing.gif";
         })
         .catch((err) => {
           console.log("Autoplay blocked:", err);
         });
     }
-  });
-});
-
-function goToLink() {
-  window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdxglHKv1_CgNr5nLLmwz0n7F8CgjbTyfVwIQ0p2oRkS9ctnQ/viewform?usp=header";
+  }
 }
